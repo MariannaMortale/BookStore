@@ -17,14 +17,10 @@ var AddBookCtrl = function ($scope, $modal, myFactory) { //поп-ап окно на добавл
 					book.reviews=[];
 					book.images=[];
 					book.image1=$scope.Book.image1;
-					book.image2=$scope.Book.image2;
-					book.image3=$scope.Book.image3;
-					book.images.push(book.image1);
-					book.images.push(book.image2);
-					book.images.push(book.image3);
 						if ($scope.Book.image1 != ""){
 							book.images=[];
 						}
+					book.images.push(book.image1);
 					myFactory.Books1.push(book);
 
                     $modalInstance.dismiss('cancel');
