@@ -1,0 +1,112 @@
+#header {
+	background-color:lavender;
+}
+
+body {
+	background-image: url('../resourses/background_image_levander.jpg');
+	background-position: 50% 50%; 
+	background-repeat: repeat;
+}
+
+#addNewBookButton {
+	display: block;
+}
+
+.form-group {
+	background-color: white; 
+	padding: 0 20px ;
+}
+
+.imageDiv, .imageDiv2 {
+	width:30%; 
+	height:30%;
+}
+
+.imgInput {
+	width:70%; 
+	height:70%;
+}
+
+.inputDiv {
+	width: 150px; 
+	height: 150px; 
+	float: left;
+}
+
+.removeBtnDiv {
+	float: left; 
+	width: 15px; 
+	height: 10px;
+}
+
+#deleteImgButton {
+	width:10px; 
+	height:10px; 
+	position: absolute; 
+	background-color: transparent; 
+	line-height: 0px; 
+	vertical-align: middle;
+}
+
+.remove_img {
+	background-image: url('../images/icon-cancel.png');
+    height: 15px;
+    left: 93px;
+    position: relative;
+    top: -104px;
+    width: 15px;
+	display: none;
+}
+
+.remove_img:hover{
+	cursor: pointer;
+}
+
+.imageDiv:hover .remove_img {
+	display: block;
+}
+
+#CTRL, .SaveToLocalStorage{
+	text-align: center;
+}
+
+.tablePadding {
+	padding-left: 10%;
+	max-width: 500px;
+	overflow: auto;
+	display:block;
+}
+
+.color0, .color2, .color5 {
+	background-color: white;
+	border: 1px solid lavender; 
+	border-radius: 50px 60px 50px 50px ;
+	}
+
+.color1, .color3  {
+	background-color: lavender;
+	border: 1px solid lavender; 
+	border-radius: 50px 60px 50px 50px ;
+}
+
+#divBackgroundImage {
+	background-color: white;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #000;
+    opacity: 1;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #000;
+    opacity: 1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #000;
+    opacity: 1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #000;
+    opacity: 1;
+}

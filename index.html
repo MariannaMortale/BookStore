@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.js"></script>
+	<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-carousel/1.0.1/angular-carousel.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<link rel="stylesheet" href="css/styleForIndex.css">
+	<script type="text/javascript" src="js/AllBooks.js"></script>
+	<script type="text/javascript" src="js/app2.js"></script>
+	<script type="text/javascript" src="js/momentjs.js"></script>
+	<script src="js/ngStorage.js"></script>
+	<script type="text/javascript" src="js/AddBookController.js"></script>
+	<script type="text/javascript" src="js/EditBookController.js"></script>
+	<script type="text/javascript" src="js/SaveToLocalStorage.js"></script>
+	<script type="text/javascript" src="js/LocalStorageController.js"></script>
+	<script type="text/javascript" src="js/TabController.js"></script>
+	<script type="text/javascript" src="js/GalleryController.js"></script>
+	<script type="text/javascript" src="js/ReviewController.js"></script>
+	<script type="text/javascript" src="js/VoteController.js"></script>
+	<script type="text/javascript" src="js/AccordionCtrl.js"></script>
+	
+  </head>
+ 
+   <header>
+	<div class="row">
+		<div class="col-sm-4"></div>
+			<div id="header" class="col-sm-4">
+				<h1 class="text-center">Favourite Books</h1>
+				<h2 class="text-center">– an Angular store –</h2>
+			</div>
+		<div class="col-sm-4"></div>
+	</div>
+    </header>
+	
+	
+	<body id="body">
+		<div ng-app="appModule">
+		
+			<div class="col-sm-2"></div>
+				<div class="col-sm-8"  ng-controller="AccordionCtrl">
+					<accordion close-others="true">
+					<accordion-group   ng-repeat="product in products"  ng-init="parentIndex = $index" is-open="isopen">
+					<accordion-heading ng-click="isopen=isopen">
+					<div> {{product.name}}  <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i></div>
+					</accordion-heading>
+					<div class="slide-animate" ng-include src="'Book1.html'"></div>
+					</accordion-group>
+					</accordion>
+				</div>
+	<div class="col-sm-2"></div>
+
+	<div ng-controller="Ctrl" id="CTRL">
+		<div class="col-sm-4">
+			<h3>Load from local Storage</h3> 
+			<button  ng-click="load(product)" class="btn btn-default center-block" value="Save"> LOAD </button>
+		</div>
+		<div class="col-sm-4">
+			<h3>Clear local Storage</h3> 	
+			<button  ng-click="clear(product)" class="btn btn-default center-block" value="Clear"> Clear </button>
+		</div>
+	</div>
+	
+	
+	<div class="col-sm-4">
+	<div ng-controller="SaveToLocalStorage" class="SaveToLocalStorage">
+			<script type="text/ng-template" id="popUpWindowSaveToLocalStorage.html">
+				<div class="modal-header">
+					<h3>You want to save to local Storage?</h3>
+				</div>
+					<div class="modal-footer">
+						<button class="btn btn-default"  ng-click="submit()" >Yes</button>
+						<button class="btn btn-warning"  ng-click="cancel()" >Cancel</button>
+					</div>
+			</script>
+			<h3>Save to local Storage</h3> 
+			<button ng-click="open()" class="btn btn-default center-block" > SAVE </button>
+
+		</div>
+	</div>
+  
+	<div ng-controller="AddBookCtrl">
+		<script type="text/ng-template" id="popUpWindowAddBook.html">
+        <div class="modal-header">
+            <h3>Add your book here:</h3>
+        </div>
+        <form id = "form1">
+			<div class="modal-body">
+				<label>Book name: </label> <br>
+					<input ng-model="Book.name" type="text"><br>
+				<label>Description: </label> <br>
+					<textarea ng-model="Book.description" class="form-control"  placeholder="Write a short product description"></textarea>
+				<label>Year: </label> <br>
+					<input ng-model="Book.year" type="text"><br>
+				<label>Writer: </label> <br>
+					<input ng-model="Book.writer" type="text"><br> <br><br>
+					<div class="imageDiv">
+						Image: <br>
+						<input ng-model="Book.image1" type="text"  placeholder="Copy link of your picture here..."> <br> <img class="imgInput" ng-show="Book.image1 != null" ng-src={{Book.image1}}><br>
+					</div>	
+			</div>	
+			
+            <div class="modal-footer">
+				<button class="btn primary-btn" ng-click="submit()">Submit</button>
+				<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+            </div>
+        </form>
+      </script>
+      <button class="btn" ng-click="open({name: ''})">Add book</button>
+  </div>
+  
+	</div>
+  </body>	
+</html>

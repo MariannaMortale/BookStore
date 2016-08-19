@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html ng-app="bookStore">
+  <head>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="momentjs.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-carousel/1.0.1/angular-carousel.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  </head>
+  
+  <body>
+  
+  <div id="divBackgroundImage"> <h3>{{product.name}}, <em>{{product.writer}},</em> {{product.year}}</h3> 
+  
+  
+  <div ng-controller="EditBookCtrl">
+		<script type="text/ng-template" id="popUpWindowEditBook.html">
+        <div class="modal-header">
+            <h3>Edit this Book:</h3>
+        </div>
+        <form id = "form1">
+			<div class="modal-body">
+				<label>Book name: </label> 
+					<input ng-model='book.name'   type="text"/> <br>
+				<label>Description: </label> <br>
+					<textarea ng-model="book.description" class="form-control"  ></textarea>
+				<label>Year: </label> <br>
+					<input ng-model="book.year" type="text" ><br>
+				<label>Writer: </label> <br>
+					<input ng-model="book.writer" type="text" ><br> <br><br>
+					
+				<div class="imageDiv" ng-repeat="(i, image) in book.images track by $index">
+					<input ng-model="book.images[i]" type="text"> 
+					<div class="inputDiv">
+						<img class="imgInput" ng-show="book.images[i]!= null"  ng-src={{book.images[i]}}>
+						<div class="remove_img" data-tooltip="click to delete image!" ng-click="deleteImg(i)"></div>
+					</div>		
+				</div><br><br><br><br><br><br>
+					
+				<a href="#" ng-click="show =! show">Add more images</a><br>
+					<div class="imageDiv2" ng-show="show">
+						<label>Image: </label>
+						<input ng-model="book.image3" type="text"  placeholder="Copy link of your picture here..."> 
+						<img class="imgInput" ng-show="book.image3 != null" ng-src={{book.image3}}> <br>
+					</div>	
+			</div>	
+			
+            <div class="modal-footer">
+				<button class="btn btn-default"  ng-click="submit()" >Submit</button>
+				<button class="btn btn-warning"  ng-click="cancel()" >Cancel</button>
+            </div>
+
+        </form>
+      </script>
+      <button class="btn" ng-click="open( parentIndex)">Edit Book</button>
+  </div>
+  
+  <div ng-controller="GalleryController as gallery"> <product-gallery> </product-gallery> </div>
+
+   <section ng-controller="TabController as tab">
+        <ul class="nav nav-pills">
+            <li ng-class="{ active:tab.isSet(1) }">
+              <a href="" ng-click="tab.setTab(1)">Description</a>
+            </li>
+            <li ng-class="{ active:tab.isSet(2) }">
+              <a href="" ng-click="tab.setTab(2)">Comments</a>
+            </li>
+			<li ng-class="{ active:tab.isSet(3) }">
+              <a href="" ng-click="tab.setTab(3)">Buy</a>
+            </li>
+			<li ng-class="{ active:tab.isSet(4) }">
+              <a href="" ng-click="tab.setTab(4)">Vote</a>
+            </li>
+          </ul>
+		  
+		<!--  Description information  -->
+        <div ng-show="tab.isSet(1)">
+			<h4>Description</h4>
+            <blockquote>{{product.description}}</blockquote>
+        </div>
+
+         <!--  Review Tab's Content  -->
+         <div ng-show="tab.isSet(2)">
+		  
+		<!-- Product Reviews  -->
+			<product-reviews></product-reviews>
+         </div> 
+		  
+		 <!--  Product Buy -->
+		 <div ng-show="tab.isSet(3)">
+            <h4>Buy</h4>
+            <blockquote>You can buy this book <a href="http://www.ozon.ru/context/detail/id/8743092/"> here</a>
+			</blockquote>
+         </div>
+		
+		<div ng-show="tab.isSet(4)" ng-controller="StoreController as store">			 
+			<h4> Raiting: </h4> 
+		<!-- Product Vote  -->
+			<h2>{{product.vote}}</h2>
+			<product-vote></product-vote>
+		</div>
+    </section>
+  </body>
+</html>

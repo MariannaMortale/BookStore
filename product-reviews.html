@@ -1,0 +1,35 @@
+<div class="row">
+	<div class="col-md-6">
+		<br></br>
+		<table class="reviewStorage()">
+			<tr ng-repeat="review in product.reviews"> 	
+				<td style="width: 300px;">
+					<div ng-class = "'color'+($index % 2)" class="tablePadding">
+					<strong>{{review.stars}} Stars </strong> <br>{{review.body}}</br> <em>{{review.author}} {{review.date}} </em>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<!--  Review Form -->
+	<div class="col-md-6">
+		<h4> Leave your comment and reviews here: </h4> 
+		<form name="reviewForm" class="pull-left" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewCtrl.addReview(product)">
+			
+			<fieldset class="form-group">
+			<select id="selectedStars" ng-model="reviewCtrl.review.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]" title="Stars">
+				<option> Rate the Product </option>
+			</select>
+			<textarea ng-model="reviewCtrl.review.body" class="form-control" data-tooltip="required field" placeholder="  *  Write a short review of the product..." title="Review"></textarea>* - Required field
+			<input ng-model="reviewCtrl.review.author" type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" />
+			<h4>Choose a Date format</h4>
+			<select ng-model="reviewCtrl.review.date" class="form-control" ng-options="date for date in ['Short Date', 'Full Date']">
+				<option> Date </option>
+			</select>
+			<br/>
+			<input type="submit" class="btn btn-primary pull-left" data-tooltip="click to leave comment" value="Submit Review"/>
+			</fieldset>
+		</form>
+	</div>
+</div>
