@@ -9,7 +9,12 @@ var EditBookCtrl = function ($scope, $modal, myFactory) { //поп-ап окно для реда
 				$scope.book = myFactory.Books1[index];
 				$scope.book.image3 = "";	
 				$scope.oldBook = {};
+					if ($scope.book.images == null) {
+						//deleteDiv.style.display = 'none';  
+						document.getElementByClassName("imageDiv").style.display = 'none';
+					}
 				angular.copy(myFactory.Books1[index], $scope.oldBook);
+				
 				$scope.submit = function () {
 					var book = myFactory.Books1[index];
 					if (!angular.isUndefined($scope.book.image3) && $scope.book.image3 != ""){
